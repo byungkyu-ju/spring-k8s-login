@@ -10,29 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
 public class SpringK8sLoginApplication {
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello Spring";
-    }
     public static void main(String[] args) {
 
         SpringApplication springApplication = new SpringApplication(SpringK8sLoginApplication.class);
         springApplication.run();
     }
 
-    @Bean
-    public ServletWebServerFactory servletWebServerFactory(){
-        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-        tomcat.addAdditionalTomcatConnectors(createStandardConnector());
-        return tomcat;
-    }
-
-    public Connector createStandardConnector(){
-        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-        connector.setPort(8080);
-        return connector;
-    }
 }
